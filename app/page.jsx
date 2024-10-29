@@ -1,6 +1,9 @@
+
 const LandingPage = () => {
   return (
-    <div>LandingPage</div>
+    <main className="bg-timberwolf h-screen">
+
+    </main>
   )
 }
 export default LandingPage
