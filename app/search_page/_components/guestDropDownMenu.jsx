@@ -29,7 +29,7 @@ export const GuestDropDownMenu = () => {
         value={`Guests ${adults} Adults, ${children} Children`}
       />
       {showGuestDropdown && (
-        <div className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-xl mt-1 p-4">
+        <div className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-xl mt-1 p-4 z-50">
           <div className="flex justify-between items-center mb-2">
             <span>Adults</span>
             <div className="flex items-center">
