@@ -1,20 +1,18 @@
 import { useState } from 'react'
 import { Check } from 'lucide-react'
 
-export const CategoryDropDown = () => {
+export const CategoryDropDown = ({ selectedCategories, onChange }) => {
   const [showDropdown, setShowDropdown] = useState(false)
-  const [selectedCategories, setSelectedCategories] = useState([])
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown)
   }
 
   const toggleCategory = (category) => {
-    setSelectedCategories((prevSelected) =>
-      prevSelected.includes(category)
-        ? prevSelected.filter((c) => c !== category)
-        : [...prevSelected, category]
-    )
+    const updatedCategories = selectedCategories.includes(category)
+      ? selectedCategories.filter(c => c !== category)
+      : [...selectedCategories, category]
+    onChange(updatedCategories)
   }
 
   const categories = ['Ocean', 'Island', 'Mountains', 'City', 'Countryside', 'Surfing', 'Forests']
@@ -39,7 +37,7 @@ export const CategoryDropDown = () => {
             >
               <span>{category}</span>
               {selectedCategories.includes(category) && (
-                <div className="border border-gray-300">
+                <div className="border border-gray-300 p-1">
                   <Check className="text-iconColor" />
                 </div>
               )}
