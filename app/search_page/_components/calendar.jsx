@@ -141,7 +141,7 @@ export const Calendar = () => {
           readOnly
           value={inputValue}
         />
-        <div className="absolute top-full left-0 w-full bg-slate-50 shadow-2xl rounded-xl mt-4 p-2 z-50">
+        <div className="absolute top-full left-0 w-full bg-slate-50 shadow-2xl rounded-xl mt-4 p-2 z-40">
           {renderCalendar()}
           <button onClick={handleToday} className="w-full mt-2 p-2 bg-fernGreen text-timberwolf rounded-full">
             Today
