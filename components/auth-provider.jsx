@@ -55,14 +55,8 @@ const AuthContextProvider = ({ children }) => {
       // Fetch user data from your database
       const userData = await fetchUserData(userCredential.user.uid);
 
-      // Check if user is an admin
-      if (userData.role === "admin") {
-        throw new Error('Admins cannot log in from this page.')
-      }
-
     } catch (err) {
       console.log(err.message);
-      const message = err.code.split('/')[1].replace(/-/g, ' ')
     }
   }
 
