@@ -137,7 +137,7 @@ export const Calendar = () => {
         <input
           type="text"
           placeholder="Date"
-          className="w-full h-10 p-3 bg-fernGreen text-timberwolf placeholder:text-timberwolf rounded-xl"
+          className="w-full h-10 p-4 bg-fernGreen text-timberwolf placeholder:text-timberwolf rounded-xl"
           readOnly
           value={inputValue}
         />
