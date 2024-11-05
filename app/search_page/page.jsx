@@ -29,8 +29,10 @@ const searchpage = () => {
     setSelectedCategories(categories)
   }
 
-  const handlePriceChange = (price) => {
-    setPrice(price)
+  const handlePriceChange = (newPrice) => {
+    setPrice(newPrice)
+    console.log(newPrice + "new price")
+    console.log(price)
   }
 
   const handleDatesChange = (startDate, endDate) => {
