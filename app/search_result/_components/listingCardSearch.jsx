@@ -14,24 +14,35 @@ export const ListingCard = () => {
       const response = await axios.get("/api/listings")
       const listings = response.data
       setListings(listings)
-      console.log('ALL Listings fetched')
+      // console.log('ALL Listings fetched', listings)
     } catch (error) {
       console.log("error", error)
     }
   }
 
   const filterListings = () => {
-    const categories = searchParams.get('categories')?.split(',') || []
+    const categories = searchParams.get('categories')?.split(',') || [];
+    const priceParam = searchParams.get('price');
+    const price = priceParam ? parseFloat(priceParam) : null;
+    const destination = searchParams.get('destination');
+    const consoleSeperator = '------------------------------------';
 
+  
     const filteredListings = listings.filter(listing => {
-      const matchesCategories = categories.length > 0 ? categories.some(category => listing.categories.includes(category)) : true
-
-      return matchesCategories
-    })
-
-    setFilteredListings(filteredListings)
-    console.log('Filtered Listings:', filteredListings)
-  }
+      const matchesCategories = categories.length > 0 ? categories.some(category => listing.categories.includes(category)) : true;
+      const matchesPrice = price !== null ? parseFloat(listing.price) <= price : true;
+      const matchesDestination = destination ? listing.title?.toLowerCase().includes(destination.toLowerCase()) : true;
+    
+      console.log(consoleSeperator)
+      console.log(`Matches Destination: ${listing.title} ${matchesDestination}`)
+      console.log(`Matches Category: ${listing.title} ${matchesCategories}`)
+      console.log(`Matches Price: ${listing.title} ${matchesPrice}`)
+      return matchesCategories && matchesPrice && matchesDestination;
+    });
+    
+    setFilteredListings(filteredListings);
+    console.log('Filtered Listings after setting state:', filteredListings);
+  };
 
   useEffect(() => {
     fetchListings()
@@ -45,28 +56,32 @@ export const ListingCard = () => {
 
   return (
     <div>
-      {filteredListings.map((listing) => (
-        <div key={listing.id} className="bg-timberwolf w-80 h-52 rounded-l p-4 m-4 gap-3">
-          <img
-            src={listing.images[0].url}
-            alt="Listing Image"
-            className="w-full h-full object-cover mt-2 rounded-xl"
-          />
-          <div className="flex">
-            <div>
-              <p>{listing.price}Euro/Night</p>
-              <p>{listing.title}</p>
-            </div>
-            <div className="bg-timberwolf flex items-center justify-center ml-auto">
-              <Star className="text-iconColor fill-iconColor" />
-              <p className="font-bold">
-                <span> {listing.rating} </span>
-                <span className="underline"> {listing.reviews} reviews </span>
-              </p>
+      {filteredListings.length > 0 ? (
+        filteredListings.map((listing) => (
+          <div key={listing.id} className="bg-timberwolf w-80 h-52 rounded-l p-4 m-4 gap-3">
+            <img
+              src={listing.images[0].url}
+              alt="Listing Image"
+              className="w-full h-full object-cover mt-2 rounded-xl"
+            />
+            <div className="flex">
+              <div>
+                <p>{listing.price} Euro/Night</p>
+                <p>{listing.title}</p>
+              </div>
+              <div className="bg-timberwolf flex items-center justify-center ml-auto">
+                <Star className="text-iconColor fill-iconColor" />
+                <p className="font-bold">
+                  <span> {listing.rating} </span>
+                  <span className="underline"> {listing.reviews} reviews </span>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <p>No listings match the filter criteria.</p>
+      )}
     </div>
-  )
+  );
 }
