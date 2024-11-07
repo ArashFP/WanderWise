@@ -26,7 +26,7 @@ export const ListingCard = () => {
   return (
     <div>
       {listings.slice(0,3).map((listing) => (
-        <div key={listing.id} className="bg-timberwolf w-80 h-52 rounded-l p-4 m-4 gap-3">
+        <div key={listing.id} className="bg-timberwolf w-80 h-48 rounded-l p-4 m-4 mt-7 flex flex-col">
           <img
             src={listing.images[0].url}
             alt="Listing Image"
