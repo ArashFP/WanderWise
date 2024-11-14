@@ -36,14 +36,14 @@ export const ListingCard = () => {
             />
             <div className="flex">
               <div>
-                <p>{listing.price} Euro/Night</p>
-                <p>{listing.title}</p>
+                <p className="text-black">{listing.price} Euro/Night</p>
+                <p className="text-black">{listing.title}</p>
               </div>
-              <div className="bg-timberwolf flex items-center justify-center ml-auto">
+              <div className="bg-white flex items-center justify-center ml-auto">
                 <Star className="text-iconColor fill-iconColor" />
                 <p className="font-bold">
-                  <span> {listing.rating} </span>
-                  <span className="underline"> {listing.reviews} reviews </span>
+                  <span className="text-black"> {listing.rating} </span>
+                  <span className="underline text-black"> {listing.reviews} reviews </span>
                 </p>
               </div>
             </div>
