@@ -37,7 +37,7 @@ export const ListingCardSingle = ({ id }) => {
   const { setTotalPrice, setCheckInDate, setCheckOutDate } = useContext(BookingContext);
   const [checkInDate, setLocalCheckInDate] = useState(null);
   const [checkOutDate, setLocalCheckOutDate] = useState(null);
-  
+
   const router = useRouter();
 
   const amenitiesIcons = {
@@ -72,7 +72,7 @@ export const ListingCardSingle = ({ id }) => {
 
   useEffect(() => {
     if (!checkInDate || !checkOutDate || !listing) return;
-  
+
     const numberOfDays = differenceInDays(checkOutDate, checkInDate);
     const totalPrice = listing.price * numberOfDays;
     setTotalPrice(totalPrice);
@@ -108,71 +108,91 @@ export const ListingCardSingle = ({ id }) => {
   const handleBookNowClick = () => {
     router.push("/pay" + id);
   };
-  
+
   return (
     <div className="flex justify-center">
-      <div className="bg-timberwolf w-80 h-48 rounded-l p-4 m-4 mt-7 flex flex-col">
-        <img
-          src={listing.images[0].url}
-          alt="Listing Image"
-          className="w-full h-full object-cover mt-2 rounded-xl"
-        />
-        <div className="flex">
-          <div>
-            <p className="text-black">{listing.price} Euro/Night</p>
-            <p className="text-black">{listing.title}</p>
-          </div>
-          <div className="bg-timberwolf flex items-center justify-center ml-auto">
-            <Star className="text-iconColor fill-iconColor" />
-            <p className="font-bold">
-              <span className="text-black"> {listing.rating} </span>
-              <span className="underline text-black">
-                {" "}
-                {listing.reviews} reviews{" "}
-              </span>
-            </p>
-          </div>
-        </div>
-        <div>
-          <p className="text-sm mt-2 text-black">{listing.description}</p>
-        </div>
-        <hr className="bg-BrunswickGreen mt-2 mb-3 opacity-100" />
-        <div className="flex flex-wrap gap-3 justify-between w-full">
-          {listing.amenities.map((amenity, index) => (
-            <div key={index} className="flex flex-col items-center mr-4">
-              {amenitiesIcons[amenity] || amenity}
-              <span className="text-sm text-black">{amenity}</span>
+      <div className="bg-timberwolf w-80 h-48 rounded-l p-4 m-4 mt-7 flex flex-col md:w-2/3">
+        <div className="md:flex gap-10 w-full">
+          <div className="w-full">
+            <div className="w-full">
+              <img
+                src={listing.images[0].url}
+                alt="Listing Image"
+                className="w-full h-auto object-cover mt-2 rounded-xl"
+              />
+              <div className="mt-2 hidden md:flex">
+                {listing.images.slice(1).map((image, index) => (
+                  <img
+                    key={index}
+                    src={image.url}
+                    alt={`Listing Image ${index + 1}`}
+                    className="w-1/2 h-20 object-cover rounded-xl mr-2"
+                  />
+                ))}
+              </div>
             </div>
-          ))}
-        </div>
-        <div className="bg-timberwolf border-darkGreen border-2 rounded-xl mt-3 p-1 px-2">
-          <p className="text-black"> Cancellation Policy:</p>
-          <p className="text-sm text-black">{listing.cancellation_policy}</p>
-        </div>
-        <div className="bg-timberwolf border-darkGreen border-2 rounded-xl mt-3 p-1 px-2 flex items-center">
-          {owner.image ? (
-            <img
-              src={owner.image}
-              alt="Owner Image"
-              className="w-10 h-10 rounded-full mr-2"
-            />
-          ) : (
-            <User className="w-10 h-10 text-iconColor fill-iconColor mr-2" />
-          )}
-          <div>
-            <p className="text-sm text-black font-bold">{owner.name}</p>
-            <p className="text-sm">
-              <span className="font-bold text-black">Phone:</span>{" "}
-              <span className="underline text-black">{owner.phone}</span>
-            </p>
-            <p className="text-sm">
-              <span className="font-bold text-black">Email:</span>{" "}
-              <span className="underline text-black">{owner.email}</span>
-            </p>
+            <div className="flex">
+              <div>
+                <p className="text-black text-sm">{listing.price} Euro/Night</p>
+                <p className="text-black text-sm">{listing.title}</p>
+              </div>
+              <div className="bg-timberwolf flex items-center justify-center ml-auto">
+                <Star className="text-iconColor fill-iconColor" />
+                <p className="font-bold">
+                  <span className="text-black text-sm"> {listing.rating} </span>
+                  <span className="underline text-black text-sm">
+                    {" "}
+                    {listing.reviews} reviews{" "}
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="">
+            <div>
+              <p className="text-sm mt-2 text-black">{listing.description}</p>
+            </div>
+            <hr className="bg-BrunswickGreen mt-2 mb-3 opacity-100" />
+            <div className="flex flex-wrap gap-3 justify-between w-full">
+              {listing.amenities.map((amenity, index) => (
+                <div key={index} className="flex flex-col items-center mr-4">
+                  {amenitiesIcons[amenity] || amenity}
+                  <span className="text-sm text-black">{amenity}</span>
+                </div>
+              ))}
+            </div>
+            <div className="bg-timberwolf border-darkGreen border-2 rounded-xl mt-3 p-1 px-2 lg:h-1/3">
+              <p className="text-black"> Cancellation Policy:</p>
+              <p className="text-sm text-black">{listing.cancellation_policy}</p>
+            </div>
           </div>
         </div>
-        <div className="mt-7">
-          <img src="/gmapspng.png" alt="google maps location" />
+        <div className="md:flex w-full gap-3">
+          <div className="mt-7 object-cover md:mt-3 md:w-1/2">
+            <img src="/gmapspng.png" alt="google maps location" />
+          </div>
+          <div className="bg-timberwolf border-darkGreen border-2 rounded-xl mt-3 p-1 px-2 flex flex-col items-center md:w-1/2 justify-center">
+            {owner.image ? (
+              <img
+                src={owner.image}
+                alt="Owner Image"
+                className="w-10 h-10 rounded-full mr-2"
+              />
+            ) : (
+              <User className="w-10 h-10 text-iconColor fill-iconColor my-2" />
+            )}
+            <div className="mb-2">
+              <p className=" text-black font-semibold">{owner.name}</p>
+              <p className="text-sm">
+                <span className="font-bold text-black">Phone:</span>{" "}
+                <span className="underline text-black">{owner.phone}</span>
+              </p>
+              <p className="text-sm">
+                <span className="font-bold text-black">Email:</span>{" "}
+                <span className="underline text-black">{owner.email}</span>
+              </p>
+            </div>
+          </div>
         </div>
         <div className="bg-timberwolf border-darkGreen border-2 rounded-xl mt-3 p-1 px-2">
           <div className="flex flex-col gap-3 items-center justify-between">
@@ -254,11 +274,11 @@ export const ListingCardSingle = ({ id }) => {
               <p className="mr-2 text-black flex justify-center items-center">
                 {checkOutDate
                   ? format(checkOutDate, "dd/MM/yyyy")
-                  : "Check-in Date"}{" "}
+                  : "Check-out Date"}{" "}
                 <ChevronDown />
               </p>
               {isCheckOutOpen && (
-                <div className="absolute top-full right-full w-full z-10">
+                <div className="absolute top-full right-full w-full z-10 md:right-0">
                   <DatePicker
                     selected={checkOutDate}
                     onChange={(date) => setLocalCheckOutDate(date)}
