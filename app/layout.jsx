@@ -2,6 +2,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthContextProvider from "@/components/auth-provider";
+import { BookingProvider } from "@/lib/context/bookingContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,9 @@ export default function RootLayout({ children }) {
       <html lang="en" suppressHydrationWarning>
         <body className={inter.className}>
           <AuthContextProvider>
+            <BookingProvider>
             {children}
+            </BookingProvider>
           </AuthContextProvider>
         </body>
       </html>
