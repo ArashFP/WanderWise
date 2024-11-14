@@ -4,6 +4,7 @@ import { Searchbar } from "../_components/searchbar"
 import { Navbar } from "../_components/navbar_mobile"
 import { ListingCard } from "./_components/listingCardSearch"
 import { Footer } from "../_components/footer"
+import ProfileBar from "../_components/profileBar"
 
 
 const SearchResult = () => {
@@ -13,6 +14,7 @@ const SearchResult = () => {
       <div className='flex items-center justify-between w-full px-4'>
         <img src="/logo.png" alt="hej" className='w-22 h-10' />
         <Searchbar/>
+        <ProfileBar/>
       </div>
       <div className="flex-grow overflow-auto pb-32">
         <ListingCard />
