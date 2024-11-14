@@ -4,6 +4,7 @@ import ProfileBar from "@/app/_components/profileBar";
 import { ListingCardSingle } from "./_components/listingCardSingle";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Footer } from "@/app/_components/footer";
 
 const detailPage = () => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const detailPage = () => {
       </div>
 
       <Navbar/>
+      <Footer/>
     </main>
   );
 };

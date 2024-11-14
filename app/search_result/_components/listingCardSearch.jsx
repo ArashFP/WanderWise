@@ -1,6 +1,7 @@
 'use client'
 import axios from "axios"
 import { Dot, Star } from "lucide-react"
+import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
@@ -54,16 +55,20 @@ export const ListingCard = () => {
     }
   }, [searchParams, listings])
 
+
+
   return (
     <div>
       {filteredListings.length > 0 ? (
         filteredListings.map((listing) => (
           <div key={listing.id} className="bg-timberwolf text-black w-80 h-52 rounded-l p-4 m-4 gap-3">
+            <Link href={`/detail_page/${listing.id}`}>
             <img
               src={listing.images[0].url}
               alt="Listing Image"
               className="w-full h-full object-cover mt-2 rounded-xl"
             />
+            </Link>
             <div className="flex">
               <div>
                 <p>{listing.price} Euro/Night</p>

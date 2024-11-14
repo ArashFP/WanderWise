@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation"
 
 
 
-export const Searchbar_mobile = () => {
+export const Searchbar = () => {
   const router = useRouter()
 
   const handleSearchClick = () => {

@@ -17,7 +17,7 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className="flex content-center items-center justify-between absolute bottom-0 w-full shrink-0 h-20 bg-fernGreen text-timberwolf" style={{ padding: "0px 60px" }}>
+    <nav className="flex content-center items-center justify-between absolute bottom-0 w-full shrink-0 h-20 bg-fernGreen text-timberwolf sm:hidden" style={{ padding: "0px 60px" }}>
       <House className="w-11 h-11 shrink-0"  onClick={handleHouseClick}/>
       <Search className="w-11 h-11 shrink-0 " onClick={handleSearchClick}/>
       <UserRoundPen className="w-11 h-11 shrink-0" onClick={handleUserClick}/>

@@ -1,12 +1,13 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { CircleArrowLeft } from "lucide-react"
 import { GuestDropDownMenu } from "./_components/guestDropDownMenu"
 import { Navbar } from "../_components/navbar_mobile"
 import { CategoryDropDown } from "./_components/categoryDropDown"
 import { PriceSliderDropdown } from "./_components/priceSliderDropdown"
 import { Calendar } from "./_components/calendar"
+import ProfileBar from '../_components/profileBar'
+import { Footer } from '../_components/footer'
 
 const searchpage = () => {
   const [destination, setDestination] = useState('')
@@ -54,9 +55,11 @@ const searchpage = () => {
   }
 
   return (
-    <main className="bg-timberwolf h-screen pt-7 relative">
+    <main className="bg-timberwolf h-screen pt-1 relative">
+      <div className='w-24 flex absolute right-0'>
+        <ProfileBar />
+      </div>
       <div className="flex items-center justify-between">
-        <CircleArrowLeft className="ml-3 h-11 w-11 absolute left-0 text-iconColor" />
         <img src="/logo.png" alt="hej" className="w-28 h-14 mx-auto" />
       </div>
       <div className="flex flex-col justify-center items-center mt-5 gap-3">
@@ -76,6 +79,7 @@ const searchpage = () => {
         </button>
       </div>
       <Navbar />
+      <Footer />
     </main>
   )
 }

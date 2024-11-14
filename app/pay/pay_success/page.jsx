@@ -1,3 +1,4 @@
+import { Footer } from "@/app/_components/footer"
 import { Navbar } from "@/app/_components/navbar_mobile"
 import { CircleCheck } from "lucide-react"
 
@@ -13,6 +14,7 @@ const successPage = () => {
         <p>Thank you for your purchase! Your adventure is just around the corner! A confirmation has been sent to your email with details of your stay.</p>
       </div>
       <Navbar/>
+      <Footer/>
     </main>
   )
 }

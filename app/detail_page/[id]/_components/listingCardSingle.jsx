@@ -110,7 +110,7 @@ export const ListingCardSingle = ({ id }) => {
   };
   
   return (
-    <div>
+    <div className="flex justify-center">
       <div className="bg-timberwolf w-80 h-48 rounded-l p-4 m-4 mt-7 flex flex-col">
         <img
           src={listing.images[0].url}

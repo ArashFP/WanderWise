@@ -6,6 +6,8 @@ import { useEffect, useState } from "react"
 
 export const ListingCard = () => {
   const [listings, setListings] = useState([])
+  const [visibleListings, setVisibleListings] = useState(3)
+
 
   const fetchListings = async () => {
     try {
@@ -23,33 +25,51 @@ export const ListingCard = () => {
     fetchListings();
   }, [])
 
+  useEffect(() => {
+    const updateVisibleListings = () => {
+      if (window.innerWidth >= 1290) {
+        setVisibleListings(9)
+      } else if (window.innerWidth >= 1060) {
+        setVisibleListings(6)
+      } else {
+        setVisibleListings(3)
+      }
+    }
+
+    updateVisibleListings()
+    window.addEventListener('resize', updateVisibleListings)
+    return () => window.removeEventListener('resize', updateVisibleListings)
+  }, [])
+
 
   return (
-    <div>
-      {listings.slice(0, 3).map((listing) => (
-        <Link key={listing.id} href={`/detail_page/${listing.id}`}>
-          <div className="bg-timberwolf w-80 h-48 rounded-l p-4 m-4 mt-7 flex flex-col">
-            <img
-              src={listing.images[0].url}
-              alt="Listing Image"
-              className="w-full h-full object-cover mt-2 rounded-xl"
-            />
-            <div className="flex">
-              <div>
-                <p className="text-black">{listing.price} Euro/Night</p>
-                <p className="text-black">{listing.title}</p>
-              </div>
-              <div className="bg-white flex items-center justify-center ml-auto">
-                <Star className="text-iconColor fill-iconColor" />
-                <p className="font-bold">
-                  <span className="text-black"> {listing.rating} </span>
-                  <span className="underline text-black"> {listing.reviews} reviews </span>
-                </p>
+    <div className="flex justify-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+        {listings.slice(0, visibleListings).map((listing) => (
+          <Link className="w-80 h-48" key={listing.id} href={`/detail_page/${listing.id}`}>
+            <div className="bg-timberwolf flex-grow w-80 h-48 rounded-l p-4 mt-7 flex flex-col">
+              <img
+                src={listing.images[0].url}
+                alt="Listing Image"
+                className="w-full h-full object-cover mt-2 rounded-xl"
+              />
+              <div className="flex">
+                <div>
+                  <p className="text-black">{listing.price} Euro/Night</p>
+                  <p className="text-black">{listing.title}</p>
+                </div>
+                <div className="bg-timberwolf flex items-center justify-center ml-auto">
+                  <Star className="text-iconColor fill-iconColor" />
+                  <p className="font-bold">
+                    <span className="text-black"> {listing.rating} </span>
+                    <span className="underline text-black"> {listing.reviews} reviews </span>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        </Link>
-      ))}
+          </Link>
+        ))}
+      </div>
     </div>
-  );
+  )
 }

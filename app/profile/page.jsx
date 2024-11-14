@@ -8,6 +8,7 @@ import { collection, doc, getDocs, query, setDoc, where } from "firebase/firesto
 import { Settings, Check } from 'lucide-react'; // Import the Settings icon from lucide-react
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { set } from "react-hook-form";
+import { Footer } from "../_components/footer";
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
@@ -223,6 +224,7 @@ const ProfilePage = () => {
         <p>No user is signed in.</p>
       )}
       <Navbar />
+      <Footer />
     </main>
   );
 };

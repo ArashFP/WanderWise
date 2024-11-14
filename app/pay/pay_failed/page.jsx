@@ -1,3 +1,4 @@
+import { Footer } from "@/app/_components/footer"
 import { Navbar } from "@/app/_components/navbar_mobile"
 import { CircleCheck } from "lucide-react"
 
@@ -13,6 +14,7 @@ const failedPage = () => {
         <p>Unfortunately, your payment was not successful. This listing is probably already booked for the duration of your wanted stay.</p>
       </div>
       <Navbar/>
+      <Footer/>
     </main>
   )
 }
