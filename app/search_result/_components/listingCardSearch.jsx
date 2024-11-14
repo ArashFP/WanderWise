@@ -58,7 +58,7 @@ export const ListingCard = () => {
     <div>
       {filteredListings.length > 0 ? (
         filteredListings.map((listing) => (
-          <div key={listing.id} className="bg-timberwolf w-80 h-52 rounded-l p-4 m-4 gap-3">
+          <div key={listing.id} className="bg-timberwolf text-black w-80 h-52 rounded-l p-4 m-4 gap-3">
             <img
               src={listing.images[0].url}
               alt="Listing Image"

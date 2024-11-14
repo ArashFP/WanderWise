@@ -18,7 +18,7 @@ export const CategoryDropDown = ({ selectedCategories, onChange }) => {
   const categories = ['Ocean', 'Island', 'Mountains', 'City', 'Countryside', 'Surfing', 'Forests']
 
   return (
-    <div className="relative w-72">
+    <div className="relative w-72 text-black">
       <input
         type="text"
         placeholder="Categories"

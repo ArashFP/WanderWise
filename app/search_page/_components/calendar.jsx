@@ -99,13 +99,13 @@ export const Calendar = () => {
     }
 
     return (
-      <table className="w-full border-collapse text-sm">
+      <table className="w-full border-collapse text-sm text-black">
         <thead>
           <tr>
-            <th colSpan={7} className="p-3 text-center font-semibold">
-              <button onClick={handlePrevMonth} className="px-2">&lt;</button>
+            <th colSpan={7} className="p-3 text-black text-center font-semibold">
+              <button onClick={handlePrevMonth} className="px-2 text-black">&lt;</button>
               {new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long' })} {currentYear}
-              <button onClick={handleNextMonth} className="px-2">&gt;</button>
+              <button onClick={handleNextMonth} className="px-2 text-black">&gt;</button>
             </th>
           </tr>
           <tr>

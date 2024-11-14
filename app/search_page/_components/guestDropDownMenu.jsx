@@ -19,7 +19,7 @@ export const GuestDropDownMenu = () => {
 
 
   return (
-    <div className="relative w-72">
+    <div className="relative w-72 text-black">
       <input
         type="text"
         placeholder="Guests"
