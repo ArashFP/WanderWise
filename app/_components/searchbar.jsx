@@ -13,7 +13,7 @@ export const Searchbar = () => {
 
 
   return (
-      <button className="relative w-44 h-8 mx-auto bg-BrunswickGreen text-center text-timberwolf rounded-xl pl-10 flex items-center justify-center" onClick={handleSearchClick}>
+      <button className="relative w-44 h-8 mx-auto bg-BrunswickGreen text-center text-timberwolf rounded-xl pl-10 items-center justify-center hidden md:flex" onClick={handleSearchClick}>
         <span className="text-timberwolf">Search...</span>
         <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-timberwolf" />
       </button>
