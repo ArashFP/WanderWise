@@ -13,8 +13,7 @@ const detailPage = () => {
     if (typeof window !== "undefined") {
       const fullPath = window.location.pathname + window.location.search;
       const relativePath = fullPath.replace("/detail_page", "");
-      setId(relativePath); // Get everything after /detail_page
-      console.log(relativePath + " " + "id from [id] page.jsx");
+      setId(relativePath);
     }
   }, [router]);
 
@@ -28,7 +27,7 @@ const detailPage = () => {
         <ListingCardSingle id={id} />
       </div>
 
-      <Navbar className="" />
+      <Navbar/>
     </main>
   );
 };
