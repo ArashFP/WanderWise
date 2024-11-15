@@ -7,17 +7,22 @@ import { useEffect, useState } from "react"
 export const ListingCard = () => {
   const [listings, setListings] = useState([])
   const [visibleListings, setVisibleListings] = useState(3)
+  const [error, setError] = useState(null)
 
 
-  const fetchListings = async () => {
+  const fetchListings = async (retryCount = 3) => {
     try {
       const response = await axios.get("/api/listings")
-
       const listings = response.data
       setListings(listings)
       console.log(listings)
     } catch (error) {
       console.log("error", error)
+      if (retryCount > 0) {
+        setTimeout(() => fetchListings(retryCount - 1), 1000)
+      } else {
+        setError("Failed to load listings. Please try again later.")
+      }
     }
   }
 
@@ -41,6 +46,9 @@ export const ListingCard = () => {
     return () => window.removeEventListener('resize', updateVisibleListings)
   }, [])
 
+  if (error) {
+    return <div>{error}</div>
+  }
 
   return (
     <div className="flex justify-center">
