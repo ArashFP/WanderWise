@@ -34,7 +34,7 @@ export const ListingCardSingle = ({ id }) => {
   const [isCheckInOpen, setIsCheckInOpen] = useState(false);
   const [isCheckOutOpen, setIsCheckOutOpen] = useState(false);
 
-  const { setTotalPrice, setCheckInDate, setCheckOutDate } = useContext(BookingContext);
+  const { setTotalPrice, setCheckInDate, setCheckOutDate, setDays, setPrice } = useContext(BookingContext);
   const [checkInDate, setLocalCheckInDate] = useState(null);
   const [checkOutDate, setLocalCheckOutDate] = useState(null);
 
@@ -75,6 +75,8 @@ export const ListingCardSingle = ({ id }) => {
 
     const numberOfDays = differenceInDays(checkOutDate, checkInDate);
     const totalPrice = listing.price * numberOfDays;
+    setPrice(listing.price);
+    setDays(numberOfDays);
     setTotalPrice(totalPrice);
     setCheckInDate(checkInDate);
     setCheckOutDate(checkOutDate);
