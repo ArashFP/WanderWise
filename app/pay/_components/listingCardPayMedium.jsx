@@ -20,13 +20,14 @@ import { BookingContext } from "@/lib/context/bookingContext";
 import React, { useContext, useEffect, useState } from "react";
 import getDocument from "@/lib/getDocument";
 import { format } from "date-fns";
+import { useRouter } from "next/navigation";
 
 
 export const ListingCardPayMedium = () => {
-  const { totalPrice, checkInDate, checkOutDate, price, days } =
-    useContext(BookingContext);
+  const { totalPrice, checkInDate, checkOutDate, price, days } = useContext(BookingContext);
   const [id, setId] = useState("");
   const [listing, setListing] = useState(null);
+  const router = useRouter();
 
   const amenitiesIcons = {
     House: <House className="text-iconColor" />,
