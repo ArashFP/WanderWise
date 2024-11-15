@@ -9,6 +9,7 @@ import { Settings, Check } from 'lucide-react'; // Import the Settings icon from
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { set } from "react-hook-form";
 import { Footer } from "../_components/footer";
+import ProfileBar from "../_components/profileBar";
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
@@ -20,7 +21,7 @@ const ProfilePage = () => {
   const [newLocation, setNewLocation] = useState('');
   const [isEditingPhone, setIsEditingPhone] = useState(false);
   const [newPhone, setNewPhone] = useState('');
-  
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -33,7 +34,7 @@ const ProfilePage = () => {
           if (!querySnapshot.empty) {
             const userDoc = querySnapshot.docs[0];
             const userData = userDoc.data();
-            setUserDocRef(userDoc.ref); 
+            setUserDocRef(userDoc.ref);
             setUser(userData);
             setNewBio(userData.bio || '');
             setNewLocation(userData.location || '');
@@ -93,136 +94,143 @@ const ProfilePage = () => {
   }
 
   return (
-    <main className="flex flex-col items-center bg-timberwolf h-screen">
-      <img src="/logo.png" alt="Logo" className="top-10 mx-auto mt-3 w-32 h-14" />
-      <div className="relative mt-6">
-        <div className="w-40 h-40 rounded-full border-4 border-BrunswickGreen bg-timberwolf flex items-center justify-center">
-          {profileImage ? (
-            <img src={profileImage} alt="Profile" className="w-full h-full rounded-full object-cover" />
-          ) : (
-            <i className="fa-regular fa-user text-6xl text-fernGreen"></i>
-          )}
-        </div>
-        <Settings
-          className="absolute bottom-0 right-0 translate-x-5 translate-y-4 text-iconColor bg-inherit rounded-full p-2 cursor-pointer w-12 h-12"
-          onClick={() => document.getElementById('fileInput').click()}
-        />
-        <input
-          type="file"
-          id="fileInput"
-          className="hidden"
-          accept="image/*"
-          onChange={handleImageUpload}
-        />
+    <main className=" bg-timberwolf min-h-screen overflow-hidden">
+      <div className="ml-auto w-24">
+        <ProfileBar />
       </div>
-      {user ? (
-        <div className="bg-BrunswickGreen flex flex-col gap-3 px-6 mt-7 rounded-xl h-auto">
-          <div className="w-64 mt-3 flex justify-between items-center">
-            <div className="flex items-center">
-              <p className="text-timberwolf">Name</p>
-            </div>
-            <p className="text-timberwolf">{user.firstName} {user.lastName}</p>
-          </div>
-          <hr className="bg-timberwolf opacity-50" />
-          <div className="w-64 flex flex-col justify-between">
-            <div className="flex items-center">
-              <p className="text-timberwolf">Bio</p>
-              {isEditingBio ? (
-                <Check
-                  className="text-timberwolf bg-inherit rounded-full p-2 cursor-pointer w-8 h-8"
-                  onClick={handleSaveBio}
-                />
+      <div className="w-full grid grid-cols-1 grid-rows-2 mx-auto">
+        <div className="flex flex-col justify-center items-center">
+          <img src="/logo.png" alt="Logo" className="top-10 mx-auto mt-3 w-32 h-14" />
+          <div className="relative mt-6">
+            <div className="w-40 h-40 md:w-56 md:h-56 rounded-full border-4 border-BrunswickGreen bg-timberwolf flex items-center justify-center">
+              {profileImage ? (
+                <img src={profileImage} alt="Profile" className="w-full h-full rounded-full object-cover" />
               ) : (
-                <Settings
-                  className="text-timberwolf bg-inherit rounded-full p-2 cursor-pointer w-8 h-8"
-                  onClick={() => setIsEditingBio(true)}
-                />
+                <i className="fa-regular fa-user text-6xl text-fernGreen"></i>
               )}
             </div>
-            {isEditingBio ? (
-              <div className="flex items-center ">
-                <textarea
-                  type="text"
-                  value={newBio}
-                  onChange={(e) => setNewBio(e.target.value)}
-                  className="bg-fernGreen text-timberwolf p-1 rounded"
-                />
-              </div>
-            ) : (
-              <p className="text-timberwolf">{user.bio}</p>
-            )}
+            <Settings
+              className="absolute bottom-0 right-0 translate-x-5 translate-y-4 text-iconColor bg-inherit rounded-full p-2 cursor-pointer w-12 h-12"
+              onClick={() => document.getElementById('fileInput').click()}
+            />
+            <input
+              type="file"
+              id="fileInput"
+              className="hidden"
+              accept="image/*"
+              onChange={handleImageUpload}
+            />
           </div>
-          <hr className="bg-timberwolf opacity-50" />
-          <div className="w-64 flex justify-between items-center">
-            <div className="flex items-center">
-              <p className="text-timberwolf">Location</p>
-              {isEditingLocation ? (
-                <Check
-                  className="text-timberwolf bg-inherit rounded-full p-2 cursor-pointer w-8 h-8"
-                  onClick={handleSaveLocation}
-                />
-              ) : (
-                <Settings
-                  className="text-timberwolf bg-inherit rounded-full p-2 cursor-pointer w-8 h-8"
-                  onClick={() => setIsEditingLocation(true)}
-                />
-              )}
-            </div>
-            {isEditingLocation ? (
-              <div className="flex items-center">
-                <input
-                  type="text"
-                  value={newLocation}
-                  onChange={(e) => setNewLocation(e.target.value)}
-                  className="bg-fernGreen text-timberwolf p-1 rounded w-full"
-                />
-              </div>
-            ) : (
-              <p className="text-timberwolf">{user.location}</p>
-            )}
-          </div>
-          <hr className="bg-timberwolf opacity-50" />
-          <div>
-            <div className="bg-BrunswickGreen w-64 flex justify-between">
-              <p className="text-timberwolf">Email</p>
-              <p className="text-timberwolf">{user.email}</p>
-            </div>
-          </div>
-          <hr className="bg-timberwolf opacity-50" />
-          <div className="w-64 flex justify-between items-center">
-            <div className="flex items-center">
-              <p className="text-timberwolf">Phone</p>
-              {isEditingPhone ? (
-                <Check
-                  className="text-timberwolf bg-inherit rounded-full p-2 cursor-pointer w-8 h-8"
-                  onClick={handleSavePhone}
-                />
-              ) : (
-                <Settings
-                  className="text-timberwolf bg-inherit rounded-full p-2 cursor-pointer w-8 h-8"
-                  onClick={() => setIsEditingPhone(true)}
-                />
-              )}
-            </div>
-            {isEditingPhone ? (
-              <div className="flex items-center">
-                <input
-                  type="text"
-                  value={newPhone}
-                  onChange={(e) => setNewPhone(e.target.value)}
-                  className="bg-fernGreen text-timberwolf p-1 rounded w-full"
-                />
-              </div>
-            ) : (
-              <p className="text-timberwolf">{user.phone}</p>
-            )}
-          </div>
-          <hr className="bg-timberwolf opacity-50 mb-6" />
         </div>
-        
-      ) : (
-        <p>No user is signed in.</p>
-      )}
+        {user ? (
+          <div className="bg-BrunswickGreen flex flex-col gap-3 px-6 mt-7 rounded-xl h-auto mx-auto md:w-2/3">
+            <div className="w-full mt-3 flex justify-between items-center">
+              <div className="flex items-center">
+                <p className="text-timberwolf">Name</p>
+              </div>
+              <p className="text-timberwolf">{user.firstName} {user.lastName}</p>
+            </div>
+            <hr className="bg-timberwolf opacity-50" />
+            <div className="w-full flex flex-col justify-between">
+              <div className="flex items-center">
+                <p className="text-timberwolf">Bio</p>
+                {isEditingBio ? (
+                  <Check
+                    className="text-timberwolf bg-inherit rounded-full p-2 cursor-pointer w-8 h-8"
+                    onClick={handleSaveBio}
+                  />
+                ) : (
+                  <Settings
+                    className="text-timberwolf bg-inherit rounded-full p-2 cursor-pointer w-8 h-8"
+                    onClick={() => setIsEditingBio(true)}
+                  />
+                )}
+              </div>
+              {isEditingBio ? (
+                <div className="flex items-center ">
+                  <textarea
+                    type="text"
+                    value={newBio}
+                    onChange={(e) => setNewBio(e.target.value)}
+                    className="bg-fernGreen text-timberwolf p-1 rounded"
+                  />
+                </div>
+              ) : (
+                <p className="text-timberwolf">{user.bio}</p>
+              )}
+            </div>
+            <hr className="bg-timberwolf opacity-50" />
+            <div className="w-full flex justify-between items-center">
+              <div className="flex items-center">
+                <p className="text-timberwolf">Location</p>
+                {isEditingLocation ? (
+                  <Check
+                    className="text-timberwolf bg-inherit rounded-full p-2 cursor-pointer w-8 h-8"
+                    onClick={handleSaveLocation}
+                  />
+                ) : (
+                  <Settings
+                    className="text-timberwolf bg-inherit rounded-full p-2 cursor-pointer w-8 h-8"
+                    onClick={() => setIsEditingLocation(true)}
+                  />
+                )}
+              </div>
+              {isEditingLocation ? (
+                <div className="flex items-center">
+                  <input
+                    type="text"
+                    value={newLocation}
+                    onChange={(e) => setNewLocation(e.target.value)}
+                    className="bg-fernGreen text-timberwolf p-1 rounded w-full"
+                  />
+                </div>
+              ) : (
+                <p className="text-timberwolf">{user.location}</p>
+              )}
+            </div>
+            <hr className="bg-timberwolf opacity-50" />
+            <div>
+              <div className="bg-BrunswickGreen w-full flex justify-between">
+                <p className="text-timberwolf">Email</p>
+                <p className="text-timberwolf">{user.email}</p>
+              </div>
+            </div>
+            <hr className="bg-timberwolf opacity-50" />
+            <div className="w-full flex justify-between items-center">
+              <div className="flex items-center">
+                <p className="text-timberwolf">Phone</p>
+                {isEditingPhone ? (
+                  <Check
+                    className="text-timberwolf bg-inherit rounded-full p-2 cursor-pointer w-8 h-8"
+                    onClick={handleSavePhone}
+                  />
+                ) : (
+                  <Settings
+                    className="text-timberwolf bg-inherit rounded-full p-2 cursor-pointer w-8 h-8"
+                    onClick={() => setIsEditingPhone(true)}
+                  />
+                )}
+              </div>
+              {isEditingPhone ? (
+                <div className="flex items-center">
+                  <input
+                    type="text"
+                    value={newPhone}
+                    onChange={(e) => setNewPhone(e.target.value)}
+                    className="bg-fernGreen text-timberwolf p-1 rounded w-full"
+                  />
+                </div>
+              ) : (
+                <p className="text-timberwolf">{user.phone}</p>
+              )}
+            </div>
+            <hr className="bg-timberwolf opacity-50 mb-6" />
+          </div>
+
+        ) : (
+          <p>No user is signed in.</p>
+        )}
+      </div>
       <Navbar />
       <Footer />
     </main>
