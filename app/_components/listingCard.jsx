@@ -55,11 +55,11 @@ export const ListingCard = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         {listings.slice(0, visibleListings).map((listing) => (
           <Link className="w-80 h-48" key={listing.id} href={`/detail_page/${listing.id}`}>
-            <div className="bg-timberwolf flex-grow w-80 h-48 rounded-l p-4 mt-7 flex flex-col">
+            <div className="bg-timberwolf flex-grow w-80 h-40 rounded-l p-4 mt-2 flex flex-col">
               <img
                 src={listing.images[0].url}
                 alt="Listing Image"
-                className="w-full h-full object-cover mt-2 rounded-xl"
+                className="w-full h-full object-cover rounded-xl"
               />
               <div className="flex">
                 <div>
