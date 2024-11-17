@@ -2,7 +2,7 @@
 
 import { Searchbar } from "../_components/searchbar"
 import { Navbar } from "../_components/navbar_mobile"
-import { ListingCard } from "./_components/listingCardSearch"
+import { ListingCardSearch } from "./_components/listingCardSearch"
 import { Footer } from "../_components/footer"
 import ProfileBar from "../_components/profileBar"
 
@@ -17,7 +17,7 @@ const SearchResult = () => {
         <ProfileBar/>
       </div>
       <div className="flex-grow overflow-auto pb-32">
-        <ListingCard />
+        <ListingCardSearch />
       </div>
       <div className="mt-auto">
         <Navbar />

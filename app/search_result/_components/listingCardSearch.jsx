@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
-export const ListingCard = () => {
+export const ListingCardSearch = () => {
   const searchParams = useSearchParams()
   const [listings, setListings] = useState([])
   const [filteredListings, setFilteredListings] = useState([])
