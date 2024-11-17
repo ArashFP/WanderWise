@@ -21,6 +21,7 @@ import React, { useContext, useEffect, useState } from "react";
 import getDocument from "@/lib/getDocument";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
+import updateDocument from "@/lib/updateDocument";
 
 
 export const ListingCardPayMedium = () => {
@@ -33,8 +34,8 @@ export const ListingCardPayMedium = () => {
     House: <House className="text-iconColor" />,
     AC: <AirVent className="text-iconColor" />,
     Shower: <ShowerHead className="text-iconColor" />,
-    Wifi: <Wifi className="text-iconColor" />,
-    NoWifi: <WifiOff className="text-iconColor" />,
+    WiFi: <Wifi className="text-iconColor" />,
+    NoWiFi: <WifiOff className="text-iconColor" />,
     DoubleBed: <BedDouble className="text-iconColor" />,
     SingleBed: <BedSingle className="text-iconColor" />,
     OutdoorFirePit: <FlameKindling className="text-iconColor" />,
@@ -142,7 +143,11 @@ export const ListingCardPayMedium = () => {
               <ul>
                 {listing.amenities.map((amenity, index) => (
                   <div key={index} className="flex items-center gap-2 py-3">
-                    <span>{React.cloneElement(amenitiesIcons[amenity], { width: '50px', height: '50px' }) || amenity}</span>
+                    <span>
+                      {amenitiesIcons[amenity]
+                        ? React.cloneElement(amenitiesIcons[amenity], { width: '50px', height: '50px' })
+                        : amenity}
+                    </span>
                     <span className="text-black px-10">{amenity}</span>
                   </div>
                 ))}
