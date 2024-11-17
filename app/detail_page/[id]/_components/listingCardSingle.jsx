@@ -25,6 +25,7 @@ import { format, differenceInDays } from "date-fns";
 import { useRouter } from "next/navigation";
 import { BookingContext } from "@/lib/context/bookingContext";
 
+
 export const ListingCardSingle = ({ id }) => {
   const [listing, setListing] = useState(null);
   const [error, setError] = useState(null);
@@ -34,9 +35,7 @@ export const ListingCardSingle = ({ id }) => {
   const [isCheckInOpen, setIsCheckInOpen] = useState(false);
   const [isCheckOutOpen, setIsCheckOutOpen] = useState(false);
 
-  const { setTotalPrice, setCheckInDate, setCheckOutDate, setDays, setPrice } = useContext(BookingContext);
-  const [checkInDate, setLocalCheckInDate] = useState(null);
-  const [checkOutDate, setLocalCheckOutDate] = useState(null);
+  const { setTotalPrice, totalPrice, setCheckInDate, checkInDate, setCheckOutDate, checkOutDate, setDays, days, setPrice } = useContext(BookingContext);
 
   const router = useRouter();
 
@@ -44,8 +43,8 @@ export const ListingCardSingle = ({ id }) => {
     House: <House className="text-iconColor" />,
     AC: <AirVent className="text-iconColor" />,
     Shower: <ShowerHead className="text-iconColor" />,
-    Wifi: <Wifi className="text-iconColor" />,
-    NoWifi: <WifiOff className="text-iconColor" />,
+    WiFi: <Wifi className="text-iconColor" />,
+    NoWiFi: <WifiOff className="text-iconColor" />,
     DoubleBed: <BedDouble className="text-iconColor" />,
     SingleBed: <BedSingle className="text-iconColor" />,
     OutdoorFirePit: <FlameKindling className="text-iconColor" />,
@@ -74,10 +73,10 @@ export const ListingCardSingle = ({ id }) => {
     if (!checkInDate || !checkOutDate || !listing) return;
 
     const numberOfDays = differenceInDays(checkOutDate, checkInDate);
-    const totalPrice = listing.price * numberOfDays;
+    const totalCost = listing.price * numberOfDays;
     setPrice(listing.price);
     setDays(numberOfDays);
-    setTotalPrice(totalPrice);
+    setTotalPrice(totalCost);
     setCheckInDate(checkInDate);
     setCheckOutDate(checkOutDate);
   }, [checkInDate, checkOutDate, listing, setTotalPrice, setCheckInDate, setCheckOutDate]);
@@ -100,12 +99,6 @@ export const ListingCardSingle = ({ id }) => {
   }
 
   const owner = listing.owner[0];
-
-  const numberOfDays =
-    checkInDate && checkOutDate
-      ? differenceInDays(checkOutDate, checkInDate) * listing.price
-      : 0;
-  const totalPrice = listing.price * numberOfDays;
 
   const handleBookNowClick = () => {
     router.push("/pay" + id);
@@ -263,7 +256,7 @@ export const ListingCardSingle = ({ id }) => {
                 <div className="absolute top-full left-0 w-full z-10">
                   <DatePicker
                     selected={checkInDate}
-                    onChange={(date) => setLocalCheckInDate(date)}
+                    onChange={(date) => setCheckInDate(date)}
                     inline
                   />
                 </div>
@@ -283,7 +276,7 @@ export const ListingCardSingle = ({ id }) => {
                 <div className="absolute top-full right-full w-full z-10 md:right-0">
                   <DatePicker
                     selected={checkOutDate}
-                    onChange={(date) => setLocalCheckOutDate(date)}
+                    onChange={(date) => setCheckOutDate(date)}
                     inline
                   />
                 </div>
@@ -293,7 +286,7 @@ export const ListingCardSingle = ({ id }) => {
           <hr className="bg-BrunswickGreen mt-4 mb-4 opacity-100" />
           <div className="flex justify-between">
             <p className="text-lg text-black">
-              {listing.price} x {numberOfDays} Days
+              {listing.price} x {days} Days
             </p>
             <p className="text-lg text-black">{totalPrice} Euro</p>
           </div>
