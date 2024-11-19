@@ -189,7 +189,7 @@ export const ListingCardSingle = ({ id }) => {
             </div>
           </div>
         </div>
-        <div className="bg-timberwolf border-darkGreen border-2 rounded-xl mt-3 p-1 px-2">
+        <div className="bg-timberwolf border-darkGreen border-2 rounded-xl lg:w-8/12 lg:mx-auto mt-3 p-1 px-2">
           <div className="flex flex-col gap-3 items-center justify-between">
             <p className="text-xl text-black">
               {"Price per night " + listing.price + " Euro"}
@@ -203,7 +203,7 @@ export const ListingCardSingle = ({ id }) => {
             {isDropdownOpen && (
               <div className="flex flex-col justify-between items-center mt-2">
                 <div className="flex justify-between items-center w-2/3">
-                  <p className="mr-2 text-black">Adults</p>
+                  <p className="mr-5 text-black">Adults</p>
                   <div className="flex items-center">
                     <button
                       onClick={decrementAdults}
@@ -306,7 +306,7 @@ export const ListingCardSingle = ({ id }) => {
             </p>
           </div>
         </div>
-        <div className="flex justify-center w-full mt-4 mb-4">
+        <div className="flex justify-center w-full mt-4 mb-4 lg:w-8/12 lg:mx-auto">
           <button
             className="bg-BrunswickGreen text-white w-full p-2 rounded-xl"
             onClick={handleBookNowClick}
