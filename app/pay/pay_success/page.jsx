@@ -18,7 +18,7 @@ const successPage = () => {
         </div>
         <div className="text-center col-span-2 bg-gray-500 rounded-lg border-2 border-white">
           <p className="p-5">Payment successful!</p>
-          <p className="pb-5 px-5">hank you for your purchase! Your adventure is just around the corner! A confirmation has been sent to your email with details of your stay.</p>
+          <p className="pb-5 px-5">Thank you for your purchase! Your adventure is just around the corner! A confirmation has been sent to your email with details of your stay.</p>
         </div>
       </div>
       <Navbar/>
