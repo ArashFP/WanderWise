@@ -28,19 +28,19 @@ export const ListingCardSearch = () => {
     const destination = searchParams.get('destination');
     const consoleSeperator = '------------------------------------';
 
-  
+
     const filteredListings = listings.filter(listing => {
       const matchesCategories = categories.length > 0 ? categories.some(category => listing.categories.includes(category)) : true;
       const matchesPrice = price !== null ? parseFloat(listing.price) <= price : true;
       const matchesDestination = destination ? listing.title?.toLowerCase().includes(destination.toLowerCase()) : true;
-    
+
       console.log(consoleSeperator)
       console.log(`Matches Destination: ${listing.title} ${matchesDestination}`)
       console.log(`Matches Category: ${listing.title} ${matchesCategories}`)
       console.log(`Matches Price: ${listing.title} ${matchesPrice}`)
       return matchesCategories && matchesPrice && matchesDestination;
     });
-    
+
     setFilteredListings(filteredListings);
     console.log('Filtered Listings after setting state:', filteredListings);
   };
@@ -63,11 +63,11 @@ export const ListingCardSearch = () => {
         filteredListings.map((listing) => (
           <div key={listing.id} className="bg-timberwolf text-black w-80 h-52 rounded-l p-4 m-4 gap-3">
             <Link href={`/detail_page/${listing.id}`}>
-            <img
-              src={listing.images[0].url}
-              alt="Listing Image"
-              className="w-full h-full object-cover mt-2 rounded-xl"
-            />
+              <img
+                src={listing.images[0].url}
+                alt="Listing Image"
+                className="w-full h-full object-cover mt-2 rounded-xl"
+              />
             </Link>
             <div className="flex">
               <div>
@@ -85,7 +85,9 @@ export const ListingCardSearch = () => {
           </div>
         ))
       ) : (
-        <p>No listings match the filter criteria.</p>
+        <div className="flex justify-center items-center text-black h-screen">
+          <p >No listings match the filter criteria.</p>
+        </div>
       )}
     </div>
   );

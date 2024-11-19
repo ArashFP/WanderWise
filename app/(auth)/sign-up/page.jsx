@@ -10,7 +10,7 @@ function SignUpPage() {
       <div className="w-full absolute z-0 h-full">
         <img src="/boat.jpeg" alt="Bridge" className='w-full h-full object-cover rounded-lg' />
       </div>
-      <div className="absolute right-0 w-24">
+      <div className="absolute right-1 top-1 w-auto">
         <ProfileBar />
       </div>
       <div className="grid grid-cols-2 grid-rows-[1fr,auto]">

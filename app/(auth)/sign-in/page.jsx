@@ -7,7 +7,7 @@ import ProfileBar from "@/app/_components/profileBar"
 function SignUpPage() {
   return (
     <main className="bg-timberwolf min-h-screen min-w-full relative">
-      <div className="absolute right-0 w-24">
+      <div className="absolute right-1 top-1 w-auto">
         <ProfileBar />
       </div>
       <div className="absolute inset-0 flex items-center justify-center">

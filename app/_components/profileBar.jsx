@@ -40,13 +40,15 @@ const ProfileBar = () => {
   };
 
   return (
-    <div className="relative flex items-center space-x-4 p-2 bg-BrunswickGreen rounded-lg shadow-md">
+    <div className="relative flex items-center space-x-4 p-2 bg-BrunswickGreen rounded-lg shadow-md text-xs">
       {user ? (
         <div className="flex items-center space-x-2">
-          <p className="text-lg text-timberwolf font-semibold cursor-pointer">
+          <p className="text-sm text-timberwolf font-semibold cursor-pointer">
             {formatEmail(user.email)}
           </p>
-          <i className="fas fa-bars cursor-pointer text-timberwolf" onClick={toggleDropdown}></i>
+          {user && (
+            <i className="fas fa-bars cursor-pointer text-timberwolf" onClick={toggleDropdown}></i>
+          )}
         </div>
       ) : (
         <Link href="/sign-in">
@@ -56,24 +58,24 @@ const ProfileBar = () => {
         </Link>
       )}
       {dropdownVisible && (
-        <div className="absolute right-0 top-11 w-full bg-fernGreen border border-gray-200 rounded-lg shadow-lg">
+        <div className="absolute right-0 top-9 w-full bg-fernGreen border border-gray-200 rounded-lg shadow-lg">
           <Link href="/">
-            <button className="bg-fernGreen text-timberwolf px-4 py-2 text-sm rounded-lg">
+            <button className="bg-fernGreen text-timberwolf px-3 py-2 text-xs rounded-lg">
               Home
             </button>
           </Link>
           <Link href="/search_page">
-            <button className="bg-fernGreen text-timberwolf px-4 py-2 text-sm rounded-lg">
+            <button className="bg-fernGreen text-timberwolf px-3 py-2 text-xs rounded-lg">
               Search
             </button>
           </Link>
           <Link href="/profile">
-            <button className="bg-fernGreen text-timberwolf px-4 py-2 text-sm rounded-lg">
+            <button className="bg-fernGreen text-timberwolf px-3 py-2 text-xs rounded-lg">
               Profile
             </button>
           </Link>
           <button
-            className="w-full rounded-xl text-timberwolf text-sm px-4 py-2 text-left bg-fernGreen"
+            className="w-full rounded-xl text-timberwolf text-xs px-3 py-2 text-left bg-fernGreen"
             onClick={handleLogout}
           >
             Log Out

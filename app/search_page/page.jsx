@@ -74,7 +74,7 @@ const searchpage = () => {
         <CategoryDropDown selectedCategories={selectedCategories} onChange={handleCategoriesChange} />
         <PriceSliderDropdown price={price} onChange={handlePriceChange} />
         <Calendar dates={dates} onChange={handleDatesChange} />
-        <button onClick={handleSearch} className="w-72 absolute bottom-24 mt-2 p-2 bg-BrunswickGreen text-timberwolf rounded-xl">
+        <button onClick={handleSearch} className="w-72 absolute bottom-36 mt-2 p-2 bg-BrunswickGreen text-timberwolf rounded-xl">
           Search
         </button>
       </div>

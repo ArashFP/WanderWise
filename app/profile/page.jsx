@@ -95,7 +95,7 @@ const ProfilePage = () => {
 
   return (
     <main className=" bg-timberwolf min-h-screen overflow-hidden">
-      <div className="ml-auto w-24">
+      <div className="absolute right-1 top-1 w-auto">
         <ProfileBar />
       </div>
       <div className="w-full grid grid-cols-1 grid-rows-2 mx-auto">
@@ -147,12 +147,12 @@ const ProfilePage = () => {
                 )}
               </div>
               {isEditingBio ? (
-                <div className="flex items-center ">
+                <div className="flex items-center">
                   <textarea
                     type="text"
                     value={newBio}
                     onChange={(e) => setNewBio(e.target.value)}
-                    className="bg-fernGreen text-timberwolf p-1 rounded"
+                    className="bg-fernGreen text-timberwolf p-1 w-full rounded"
                   />
                 </div>
               ) : (
